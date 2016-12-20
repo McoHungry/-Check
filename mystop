@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "hello mystop"
+
+MYUSER=`whoami`
+
+MYPID=`ps -u ${MYUSER} | grep keymngserver | awk {'print $1'}`
+
+if [ -z $MYPID ]; then
+	echo "the keymngserver is not start."
+	exit 1
+fi
+
+kill -12 ${MYPID}
+echo "the keymngserver exit"
